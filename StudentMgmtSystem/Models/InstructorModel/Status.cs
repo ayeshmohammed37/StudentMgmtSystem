@@ -1,4 +1,4 @@
-﻿namespace StudentMgmtSystem.Models
+﻿namespace StudentMgmtSystem.Models.InstructorModel
 {
     public enum Status
     {

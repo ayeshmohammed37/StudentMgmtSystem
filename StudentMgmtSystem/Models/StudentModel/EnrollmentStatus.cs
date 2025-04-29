@@ -1,4 +1,4 @@
-﻿namespace StudentMgmtSystem.Models
+﻿namespace StudentMgmtSystem.Models.StudentModel
 {
     public enum EnrollmentStatus
     {
