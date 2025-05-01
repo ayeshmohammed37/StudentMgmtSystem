@@ -1,4 +1,5 @@
 ﻿using StudentMgmtSystem.Models.ExamModel;
+using StudentMgmtSystem.Models.StudentModel;
 
 namespace StudentMgmtSystem.Models.TakedExamModel
 {

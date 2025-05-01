@@ -18,7 +18,7 @@ namespace StudentMgmtSystem.Models.CourseModel
         public string Description { get; set; }
         public string LearningOutcomes { get; set; }
         public CourseStatus CourseStatus { get; set; }
-        public Department DepartmentId { get; set; } // Foreign Key for the Department's Course
+        public int DepartmentId { get; set; } // Foreign Key for the Department's Course
 
 
         // Navigation Properties

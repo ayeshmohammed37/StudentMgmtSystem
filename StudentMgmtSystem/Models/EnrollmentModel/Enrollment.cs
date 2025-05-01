@@ -10,7 +10,7 @@ namespace StudentMgmtSystem.Models.EnrollmentModel
 
         //Foreign Key
         public int StudentId { get; set; }
-        public int CoursOfferingId { get; set; }
+        public int CourseOfferingId { get; set; }
 
         // Enrollment Details Details
         public string Grade { get; set; } // "A", "B", ..., "FR", "AB"

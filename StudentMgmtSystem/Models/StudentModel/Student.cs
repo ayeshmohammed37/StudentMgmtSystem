@@ -31,9 +31,9 @@ namespace StudentMgmtSystem.Models.StudentModel
         public string Address { get; set; }
 
 
-        // Authentication
-        public string UserName { get; set; }
-        public string Password { get; set; }
+        //// Authentication
+        //public string UserName { get; set; }
+        //public string Password { get; set; }
 
         //public string PasswordHash { get; set; }
         //public string PasswordSalt { get; set; }
@@ -42,7 +42,7 @@ namespace StudentMgmtSystem.Models.StudentModel
         // Academic Information
         public double CGPA { get; set; }
         public int DepartmentId { get; set; } // Foreign Key to Department
-        public int InstructorId { get; set; } // Advisor
+        public int? InstructorId { get; set; } // Advisor
         public int AdminId { get; set; } // the Admin who'manage student
         public DateTime EnrollmentDate { get; set; } // joining institution or College
         public DateTime? GraduationDate { get; set; }
