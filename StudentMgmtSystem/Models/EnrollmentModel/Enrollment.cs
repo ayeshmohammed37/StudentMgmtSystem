@@ -18,6 +18,6 @@ namespace StudentMgmtSystem.Models.EnrollmentModel
 
         // Navigation Properties
         public Student Student { get; set; }
-        public CourseOffering CourseOffering { get; set; }
+        //public CourseOffering CourseOffering { get; set; }
     }
 }

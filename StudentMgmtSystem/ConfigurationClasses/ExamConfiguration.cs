@@ -10,18 +10,18 @@ namespace StudentMgmtSystem.ConfigurationClasses
         public void Configure(EntityTypeBuilder<Exam> builder)
         {
 
-            // Exam-TakedExam
-            builder.HasMany(e => e.TakedExams)
-               .WithOne(te => te.Exam)
-               .HasForeignKey(te => te.ExamId)
-               .OnDelete(DeleteBehavior.Restrict);
+            //// Exam-TakedExam
+            //builder.HasMany(e => e.TakedExams)
+            //   .WithOne(te => te.Exam)
+            //   .HasForeignKey(te => te.ExamId)
+            //.OnDelete(DeleteBehavior.Cascade);
 
 
             // Course-Exam 
             builder.HasOne(e => e.Course)
                 .WithMany(c => c.Exams)
                 .HasForeignKey(e => e.CourseId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
 
             builder.Property(e => e.TotalMarks)

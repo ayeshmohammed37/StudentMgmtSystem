@@ -13,12 +13,12 @@ namespace StudentMgmtSystem.ConfigurationClasses
             builder.HasOne(t => t.Course)
                .WithMany(c => c.Teachings)
                .HasForeignKey(t => t.CourseId)
-               .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(t => t.Instructor)
-               .WithMany(i => i.Teachings)
-               .HasForeignKey(t => t.InstructorId)
-               .OnDelete(DeleteBehavior.Restrict);
+              .WithMany(i => i.Teachings)
+              .HasForeignKey(t => t.InstructorId)
+              .OnDelete(DeleteBehavior.NoAction);
 
         }
     }

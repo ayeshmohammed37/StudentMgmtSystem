@@ -23,10 +23,10 @@ namespace StudentMgmtSystem.Models.CourseOfferingModel
 
 
         // Navigation Properties
-        public Semester Semester { get; set; }
-        public Course Course { get; set; }
-        public Instructor Instructor { get; set; }
-        public List<Enrollment> Enrollments { get; set; }
+        //public Semester Semester { get; set; }
+        //public Course Course { get; set; }
+        //public Instructor Instructor { get; set; }
+        //public List<Enrollment> Enrollments { get; set; }
 
     }
 }

@@ -16,9 +16,9 @@ namespace StudentMgmtSystem.ConfigurationClasses
             builder.HasOne(c => c.Department)
                 .WithMany(d => d.Courses)
                 .HasForeignKey(c => c.DepartmentId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
-                        
+
         }
     }
 }

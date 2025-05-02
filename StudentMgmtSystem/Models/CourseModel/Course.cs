@@ -24,7 +24,7 @@ namespace StudentMgmtSystem.Models.CourseModel
         // Navigation Properties
         public Department Department { get; set; }
         public List<Teaching> Teachings { get; set; }
-        public List<CourseOffering> CourseOfferings { get; set; }
+        //public List<CourseOffering> CourseOfferings { get; set; }
         public List<Assignment> Assignments { get; set; }
         public List<Exam> Exams { get; set; }
     }

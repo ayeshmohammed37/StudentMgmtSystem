@@ -50,10 +50,10 @@ namespace StudentMgmtSystem.Models.InstructorModel
         // Navigation Properties
         public Department Department { get; set; }
         public List<Teaching> Teachings { get; set; }
-        public List<CourseOffering> CourseOfferings { get; set; }
+        //public List<CourseOffering> CourseOfferings { get; set; }
         public List<Student> Students { get; set; } //Academic advisor for students
-        public Department? SupervisedDepartment { get; set; }  // Supervisor role
-        public List<Assignment> Assignments { get; set; }
+        //public Department? SupervisedDepartment { get; set; }  // Supervisor role
+        //public List<Assignment> Assignments { get; set; }
 
     }
 }

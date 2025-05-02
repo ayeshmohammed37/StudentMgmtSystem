@@ -16,14 +16,14 @@ namespace StudentMgmtSystem.Models.DepartmentModel
 
 
         // Mangment Information
-        public int? SupervisorId { get; set; } // Foreign Key to Instructor
+        //public int? SupervisorId { get; set; } // Foreign Key to Instructor
 
         //Navigation Properties
         // Student Enrolled in this Department
         public List<Student> Students { get; set; }
         public List<Instructor> Instructors { get; set; }
         public List<Course> Courses { get; set; }
-        public Instructor Supervisor { get; set; } //  nav-prop for the instructor who manage department
+        //public Instructor Supervisor { get; set; } //  nav-prop for the instructor who manage department
 
     }
 }

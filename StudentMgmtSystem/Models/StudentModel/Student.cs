@@ -1,8 +1,6 @@
-﻿using StudentMgmtSystem.Models.AdminModel;
-using StudentMgmtSystem.Models.DepartmentModel;
+﻿using StudentMgmtSystem.Models.DepartmentModel;
 using StudentMgmtSystem.Models.EnrollmentModel;
 using StudentMgmtSystem.Models.InstructorModel;
-using StudentMgmtSystem.Models.NotificationModel;
 using StudentMgmtSystem.Models.TakedExamModel;
 
 namespace StudentMgmtSystem.Models.StudentModel
@@ -43,7 +41,7 @@ namespace StudentMgmtSystem.Models.StudentModel
         public double CGPA { get; set; }
         public int DepartmentId { get; set; } // Foreign Key to Department
         public int? InstructorId { get; set; } // Advisor
-        public int AdminId { get; set; } // the Admin who'manage student
+        //public int AdminId { get; set; } // the Admin who'manage student
         public DateTime EnrollmentDate { get; set; } // joining institution or College
         public DateTime? GraduationDate { get; set; }
         public ClassStanding ClassStanding { get; set; } // Freshman, Sophomore, Junior, Senior
@@ -55,8 +53,8 @@ namespace StudentMgmtSystem.Models.StudentModel
         public List<Enrollment> Enrollments { get; set; }
         public Instructor Instructor { get; set; }
         public List<TakedExam> TakedExams { get; set; }
-        public Admin Admin { get; set; }
-        public List<Notification> Notifications { get; set; }
+        //public Admin Admin { get; set; }
+        //public List<Notification> Notifications { get; set; }
 
     }
 }

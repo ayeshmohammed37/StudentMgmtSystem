@@ -11,6 +11,17 @@ namespace StudentMgmtSystem.ConfigurationClasses
         {
             builder.Property(te => te.points)
                 .HasPrecision(18, 2);
+
+            builder.HasOne(te => te.Student)
+               .WithMany(s => s.TakedExams)
+               .HasForeignKey(te => te.StudentId)
+               .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne(te => te.Exam)
+               .WithMany(e => e.TakedExams)
+               .HasForeignKey(te => te.ExamId)
+               .OnDelete(DeleteBehavior.Cascade);
+
         }
     }
 }

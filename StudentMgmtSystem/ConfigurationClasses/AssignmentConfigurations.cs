@@ -10,16 +10,16 @@ namespace StudentMgmtSystem.ConfigurationClasses
         public void Configure(EntityTypeBuilder<Assignment> builder)
         {
             // Assignment-Instructor 
-            builder.HasOne(a => a.Instructor)
-                .WithMany(i => i.Assignments)
-                .HasForeignKey(a => a.InstructorId)
-                .OnDelete(DeleteBehavior.Restrict);
+            //builder.HasOne(a => a.Instructor)
+            //    .WithMany(i => i.Assignments)
+            //    .HasForeignKey(a => a.InstructorId)
+            //.OnDelete(DeleteBehavior.Cascade);
 
             // Assignment-Course relationship (many-to-one)
             builder.HasOne(a => a.Course)
                 .WithMany(c => c.Assignments)
                 .HasForeignKey(a => a.CourseId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

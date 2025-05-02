@@ -16,12 +16,12 @@ namespace StudentMgmtSystem.Models.AssignmentModel
         public DateTime Deadline { get; set; }
         public DateTime? ExtendedDueDate { get; set; } // Optional not nessecary
         public AssignmantType AssignmantType { get; set; }
-        public int InstructorId { get; set; }
+        //public int InstructorId { get; set; }
         public int CourseId { get; set; }
 
 
         // Navigation Properties
-        public Instructor Instructor { get; set; }
+        //public Instructor Instructor { get; set; }
         public Course Course { get; set; }
     }
 }

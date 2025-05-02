@@ -17,6 +17,6 @@ namespace StudentMgmtSystem.Models.SemesterModel
         public DateTime EndDate { get; set; }
 
         // Navigation Properties
-        public List<CourseOffering> CourseOfferings { get; set; }
+        //public List<CourseOffering> CourseOfferings { get; set; }
     }
 }

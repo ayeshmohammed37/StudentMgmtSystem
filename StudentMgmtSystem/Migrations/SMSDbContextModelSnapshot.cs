@@ -22,60 +22,6 @@ namespace StudentMgmtSystem.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("StudentMgmtSystem.Models.AdminModel.Admin", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("BirthDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EmployeeId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Gender")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("HireDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NationalId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Admins");
-                });
-
             modelBuilder.Entity("StudentMgmtSystem.Models.AssignmentModel.Assignment", b =>
                 {
                     b.Property<int>("Id")
@@ -103,9 +49,6 @@ namespace StudentMgmtSystem.Migrations
                     b.Property<DateTime?>("ExtendedDueDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("InstructorId")
-                        .HasColumnType("int");
-
                     b.Property<double>("Points")
                         .HasColumnType("float");
 
@@ -116,8 +59,6 @@ namespace StudentMgmtSystem.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CourseId");
-
-                    b.HasIndex("InstructorId");
 
                     b.ToTable("Assignments");
                 });
@@ -195,12 +136,6 @@ namespace StudentMgmtSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CourseId");
-
-                    b.HasIndex("InstructorId");
-
-                    b.HasIndex("SemesterId");
-
                     b.ToTable("CourseOfferings");
                 });
 
@@ -224,14 +159,7 @@ namespace StudentMgmtSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SupervisorId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("SupervisorId")
-                        .IsUnique()
-                        .HasFilter("[SupervisorId] IS NOT NULL");
 
                     b.ToTable("Department");
                 });
@@ -258,8 +186,6 @@ namespace StudentMgmtSystem.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CourseOfferingId");
 
                     b.HasIndex("StudentId");
 
@@ -424,49 +350,6 @@ namespace StudentMgmtSystem.Migrations
                     b.ToTable("Instructors");
                 });
 
-            modelBuilder.Entity("StudentMgmtSystem.Models.NotificationModel.Notification", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsRead")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ReadDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("SendDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("SenderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SenderId");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("Notifications");
-                });
-
             modelBuilder.Entity("StudentMgmtSystem.Models.SemesterModel.Semester", b =>
                 {
                     b.Property<int>("Id")
@@ -512,9 +395,6 @@ namespace StudentMgmtSystem.Migrations
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("AdminId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
@@ -585,8 +465,6 @@ namespace StudentMgmtSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AdminId");
-
                     b.HasIndex("DepartmentId");
 
                     b.HasIndex("InstructorId");
@@ -649,18 +527,10 @@ namespace StudentMgmtSystem.Migrations
                     b.HasOne("StudentMgmtSystem.Models.CourseModel.Course", "Course")
                         .WithMany("Assignments")
                         .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("StudentMgmtSystem.Models.InstructorModel.Instructor", "Instructor")
-                        .WithMany("Assignments")
-                        .HasForeignKey("InstructorId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Course");
-
-                    b.Navigation("Instructor");
                 });
 
             modelBuilder.Entity("StudentMgmtSystem.Models.CourseModel.Course", b =>
@@ -668,64 +538,19 @@ namespace StudentMgmtSystem.Migrations
                     b.HasOne("StudentMgmtSystem.Models.DepartmentModel.Department", "Department")
                         .WithMany("Courses")
                         .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Department");
                 });
 
-            modelBuilder.Entity("StudentMgmtSystem.Models.CourseOfferingModel.CourseOffering", b =>
-                {
-                    b.HasOne("StudentMgmtSystem.Models.CourseModel.Course", "Course")
-                        .WithMany("CourseOfferings")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("StudentMgmtSystem.Models.InstructorModel.Instructor", "Instructor")
-                        .WithMany("CourseOfferings")
-                        .HasForeignKey("InstructorId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("StudentMgmtSystem.Models.SemesterModel.Semester", "Semester")
-                        .WithMany("CourseOfferings")
-                        .HasForeignKey("SemesterId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-
-                    b.Navigation("Instructor");
-
-                    b.Navigation("Semester");
-                });
-
-            modelBuilder.Entity("StudentMgmtSystem.Models.DepartmentModel.Department", b =>
-                {
-                    b.HasOne("StudentMgmtSystem.Models.InstructorModel.Instructor", "Supervisor")
-                        .WithOne("SupervisedDepartment")
-                        .HasForeignKey("StudentMgmtSystem.Models.DepartmentModel.Department", "SupervisorId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.Navigation("Supervisor");
-                });
-
             modelBuilder.Entity("StudentMgmtSystem.Models.EnrollmentModel.Enrollment", b =>
                 {
-                    b.HasOne("StudentMgmtSystem.Models.CourseOfferingModel.CourseOffering", "CourseOffering")
-                        .WithMany("Enrollments")
-                        .HasForeignKey("CourseOfferingId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("StudentMgmtSystem.Models.StudentModel.Student", "Student")
                         .WithMany("Enrollments")
                         .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("CourseOffering");
 
                     b.Navigation("Student");
                 });
@@ -735,7 +560,7 @@ namespace StudentMgmtSystem.Migrations
                     b.HasOne("StudentMgmtSystem.Models.CourseModel.Course", "Course")
                         .WithMany("Exams")
                         .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Course");
@@ -746,51 +571,24 @@ namespace StudentMgmtSystem.Migrations
                     b.HasOne("StudentMgmtSystem.Models.DepartmentModel.Department", "Department")
                         .WithMany("Instructors")
                         .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Department");
                 });
 
-            modelBuilder.Entity("StudentMgmtSystem.Models.NotificationModel.Notification", b =>
-                {
-                    b.HasOne("StudentMgmtSystem.Models.AdminModel.Admin", "Admin")
-                        .WithMany("Notifications")
-                        .HasForeignKey("SenderId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("StudentMgmtSystem.Models.StudentModel.Student", "Student")
-                        .WithMany("Notifications")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Admin");
-
-                    b.Navigation("Student");
-                });
-
             modelBuilder.Entity("StudentMgmtSystem.Models.StudentModel.Student", b =>
                 {
-                    b.HasOne("StudentMgmtSystem.Models.AdminModel.Admin", "Admin")
-                        .WithMany("Students")
-                        .HasForeignKey("AdminId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("StudentMgmtSystem.Models.DepartmentModel.Department", "Department")
                         .WithMany("Students")
                         .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("StudentMgmtSystem.Models.InstructorModel.Instructor", "Instructor")
                         .WithMany("Students")
                         .HasForeignKey("InstructorId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.Navigation("Admin");
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Department");
 
@@ -802,13 +600,13 @@ namespace StudentMgmtSystem.Migrations
                     b.HasOne("StudentMgmtSystem.Models.ExamModel.Exam", "Exam")
                         .WithMany("TakedExams")
                         .HasForeignKey("ExamId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("StudentMgmtSystem.Models.StudentModel.Student", "Student")
                         .WithMany("TakedExams")
                         .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Exam");
@@ -821,13 +619,13 @@ namespace StudentMgmtSystem.Migrations
                     b.HasOne("StudentMgmtSystem.Models.CourseModel.Course", "Course")
                         .WithMany("Teachings")
                         .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("StudentMgmtSystem.Models.InstructorModel.Instructor", "Instructor")
                         .WithMany("Teachings")
                         .HasForeignKey("InstructorId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Course");
@@ -835,27 +633,13 @@ namespace StudentMgmtSystem.Migrations
                     b.Navigation("Instructor");
                 });
 
-            modelBuilder.Entity("StudentMgmtSystem.Models.AdminModel.Admin", b =>
-                {
-                    b.Navigation("Notifications");
-
-                    b.Navigation("Students");
-                });
-
             modelBuilder.Entity("StudentMgmtSystem.Models.CourseModel.Course", b =>
                 {
                     b.Navigation("Assignments");
 
-                    b.Navigation("CourseOfferings");
-
                     b.Navigation("Exams");
 
                     b.Navigation("Teachings");
-                });
-
-            modelBuilder.Entity("StudentMgmtSystem.Models.CourseOfferingModel.CourseOffering", b =>
-                {
-                    b.Navigation("Enrollments");
                 });
 
             modelBuilder.Entity("StudentMgmtSystem.Models.DepartmentModel.Department", b =>
@@ -874,27 +658,14 @@ namespace StudentMgmtSystem.Migrations
 
             modelBuilder.Entity("StudentMgmtSystem.Models.InstructorModel.Instructor", b =>
                 {
-                    b.Navigation("Assignments");
-
-                    b.Navigation("CourseOfferings");
-
                     b.Navigation("Students");
 
-                    b.Navigation("SupervisedDepartment");
-
                     b.Navigation("Teachings");
-                });
-
-            modelBuilder.Entity("StudentMgmtSystem.Models.SemesterModel.Semester", b =>
-                {
-                    b.Navigation("CourseOfferings");
                 });
 
             modelBuilder.Entity("StudentMgmtSystem.Models.StudentModel.Student", b =>
                 {
                     b.Navigation("Enrollments");
-
-                    b.Navigation("Notifications");
 
                     b.Navigation("TakedExams");
                 });
