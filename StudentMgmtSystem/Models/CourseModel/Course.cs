@@ -1,31 +1,25 @@
-﻿using StudentMgmtSystem.Models.AssignmentModel;
-using StudentMgmtSystem.Models.CourseOfferingModel;
+﻿using StudentMgmtSystem.Models.CourseOfferingModel;
+using StudentMgmtSystem.Models.CurriculumModel;
 using StudentMgmtSystem.Models.DepartmentModel;
-using StudentMgmtSystem.Models.ExamModel;
-using StudentMgmtSystem.Models.TeachingModel;
 
 namespace StudentMgmtSystem.Models.CourseModel
 {
     public class Course
     {
-        // Primery Key
         public int Id { get; set; }
-
-        // Course Information
-        public string Code { get; set; }
-        public string Title { get; set; }
-        public int Credits { get; set; } //3,4,2,..
-        public string Description { get; set; }
-        public string LearningOutcomes { get; set; }
-        public CourseStatus CourseStatus { get; set; }
-        public int DepartmentId { get; set; } // Foreign Key for the Department's Course
-
+        public string CourseCode { get; set; } = null!; // e.g., "CS101"
+        public string Title { get; set; } = null!;
+        public string? Description { get; set; }
+        public int Credits { get; set; } = 3;
+        public bool IsActive { get; set; } = true;
 
         // Navigation Properties
-        public Department Department { get; set; }
-        public List<Teaching> Teachings { get; set; }
-        //public List<CourseOffering> CourseOfferings { get; set; }
-        public List<Assignment> Assignments { get; set; }
-        public List<Exam> Exams { get; set; }
+        public int DepartmentId { get; set; }
+        public Department Department { get; set; } = null!;
+
+        public ICollection<Curriculum> Curricula { get; set; } = new HashSet<Curriculum>();
+        public ICollection<CourseOffering> Offerings { get; set; } = new HashSet<CourseOffering>();
+        public ICollection<Course> Prerequisites { get; set; } = new HashSet<Course>();
+        public ICollection<Course> IsPrerequisiteFor { get; set; } = new HashSet<Course>();
     }
 }

@@ -4,19 +4,15 @@ namespace StudentMgmtSystem.Models.SemesterModel
 {
     public class Semester
     {
-        //Primary Key
         public int Id { get; set; }
-
-
-        // Semester Information
-        public string Name { get; set; } // "Fall 2023", "Spring 2024",...
-        public string Code { get; set; } // "FA23", SP24", "SU25", ....
-        public string AcademicYear { get; set; } // "2018-2017"
-        public SemesterTerm SemesterTerm { get; set; } // First, Second, Summer
+        public string Name { get; set; } = null!; // e.g., "Fall 2023"
+        public string Code { get; set; } = null!; // e.g., "FA23"
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public bool IsCurrent { get; set; } = false;
 
         // Navigation Properties
-        //public List<CourseOffering> CourseOfferings { get; set; }
+        public ICollection<CourseOffering> CourseOfferings { get; set; } = new HashSet<CourseOffering>();
+
     }
 }

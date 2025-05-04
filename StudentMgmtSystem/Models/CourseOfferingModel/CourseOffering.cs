@@ -7,26 +7,22 @@ namespace StudentMgmtSystem.Models.CourseOfferingModel
 {
     public class CourseOffering
     {
-        // Primery Key
         public int Id { get; set; }
-
-        // Foreign Keys
-        public int SemesterId { get; set; }
-        public int CourseId { get; set; }
-        public int InstructorId { get; set; }
-
-        // Details
-        public int Capacity { get; set; }
-        public int Enrolled { get; set; }
-        public string Location { get; set; } // "Building A. Room 101"
-        public string Schedule { get; set; } // "Mon,Sat 10:00-11:30"
-
+        public string Section { get; set; } = null!; // e.g., "01"
+        public int Capacity { get; set; } = 30;
+        public string? Schedule { get; set; } // e.g., "MWF 10:00-10:50"
+        public string? Location { get; set; }
 
         // Navigation Properties
-        //public Semester Semester { get; set; }
-        //public Course Course { get; set; }
-        //public Instructor Instructor { get; set; }
-        //public List<Enrollment> Enrollments { get; set; }
+        public int CourseId { get; set; }
+        public Course Course { get; set; } = null!;
 
+        public int SemesterId { get; set; }
+        public Semester Semester { get; set; } = null!;
+
+        public int InstructorId { get; set; }
+        public Instructor Instructor { get; set; } = null!;
+
+        public ICollection<Enrollment> Enrollments { get; set; } = new HashSet<Enrollment>();
     }
 }
