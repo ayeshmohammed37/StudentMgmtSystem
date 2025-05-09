@@ -81,5 +81,4 @@ SIS/
    Real-time Chat/Announcements
    Mobile Responsive Enhancements
 🧑‍💻 Authors
-   Your Name (@yourGitHubHandle)
-   Collaborator Name (@collaboratorHandle) 
+   
